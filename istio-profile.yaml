@@ -1,0 +1,14 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  components:
+    ingressGateways:
+    - name: istio-ingressgateway
+      enabled: true
+      k8s:
+        serviceAnnotations:
+          dns.gardener.cloud/class: garden
+          dns.gardener.cloud/dnsnames: "istio-demo.timebertt.dev,*.istio-demo.timebertt.dev"
+          dns.gardener.cloud/ttl: "120"
+          cert.gardener.cloud/issuer: letsencrypt
+          cert.gardener.cloud/secretname: ingress-tls
