@@ -22,6 +22,12 @@ Demo for Istio
    k apply -k addons
    ```
 
+4. Install the bookinfo app:
+
+   ```bash
+   k apply -k bookinfo
+   ```
+
 ## Cleanup
 
 1. Uninstall Istio:

@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: bookinfo
+
+resources:
+- namespace-bookinfo.yaml
+- https://raw.githubusercontent.com/istio/istio/release-1.13/samples/bookinfo/platform/kube/bookinfo.yaml
+- https://raw.githubusercontent.com/istio/istio/release-1.13/samples/bookinfo/networking/bookinfo-gateway.yaml
+
+patchesStrategicMerge:
+- patch-gateway-bookinfo.yaml
+- patch-virtualservice-bookinfo.yaml
