@@ -2,6 +2,12 @@
 
 Demo for Istio
 
+## Prepare Kubernetes Cluster
+
+```bash
+k apply -f shoot.yaml
+```
+
 ## Install Istio
 
 1. Install Istio components based on `demo` profile with a few customizations:
