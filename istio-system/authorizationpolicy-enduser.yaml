@@ -10,4 +10,8 @@ spec:
   provider:
     name: oauth2-proxy
   rules:
-  - {}
+  # require enduser to authenticate for all hosts except main domain
+  - to:
+    - operation:
+       notHosts:
+       - istio-demo.timebertt.dev

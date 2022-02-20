@@ -6,6 +6,12 @@ spec:
   hosts:
   - "istio-demo.timebertt.dev"
   http:
+  - name: "redirect-root"
+    match:
+    - uri:
+        exact: "/"
+    redirect:
+      uri: "/productpage"
   - match:
     - uri:
         exact: /productpage
