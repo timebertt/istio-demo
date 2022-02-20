@@ -13,3 +13,18 @@ spec:
         principals:
         - "cluster.local/ns/istio-system/sa/grafana"
         - "cluster.local/ns/istio-system/sa/kiali"
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: addons-allow-to-tracing
+spec:
+  selector:
+    matchLabels:
+      app: jaeger
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals:
+        - "cluster.local/ns/istio-system/sa/kiali"
