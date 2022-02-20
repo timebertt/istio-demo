@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: istio-system
+
+resources:
+- deployment.yaml
+- service.yaml
+- virtualservice.yaml
+
+generatorOptions:
+  labels:
+    app: oauth2-proxy
+
+secretGenerator:
+- name: oauth2-proxy
+  files:
+  - client-id=secrets/client-id
+  - client-secret=secrets/client-secret
+  - cookie-secret=secrets/cookie-secret
+
+configMapGenerator:
+- name: oauth2-proxy
+  files:
+  - oauth2_proxy.cfg=config.cfg

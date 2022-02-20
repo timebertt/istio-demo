@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: grafana
+spec:
+  hosts:
+  - "grafana.istio-demo.timebertt.dev"
+  gateways:
+  - addons-gateway
+  http:
+  - route:
+    - destination:
+        host: grafana
+        port:
+          number: 3000
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: grafana
+spec:
+  host: grafana
+  trafficPolicy:
+    tls:
+      mode: DISABLE

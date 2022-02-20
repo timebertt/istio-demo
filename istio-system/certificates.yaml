@@ -1,0 +1,25 @@
+apiVersion: cert.gardener.cloud/v1alpha1
+kind: Certificate
+metadata:
+  name: ingress-tls
+  namespace: istio-system
+spec:
+  commonName: istio-demo.timebertt.dev
+  issuerRef:
+    name: letsencrypt
+  secretRef:
+    name: ingress-tls
+    namespace: istio-system
+---
+apiVersion: cert.gardener.cloud/v1alpha1
+kind: Certificate
+metadata:
+  name: ingress-tls-addons
+  namespace: istio-system
+spec:
+  commonName: "*.istio-demo.timebertt.dev"
+  issuerRef:
+    name: letsencrypt
+  secretRef:
+    name: ingress-tls-addons
+    namespace: istio-system

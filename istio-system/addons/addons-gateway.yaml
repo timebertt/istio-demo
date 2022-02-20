@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: addons-gateway
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: ingress-tls-addons
+    hosts:
+    - "grafana.istio-demo.timebertt.dev"
+    - "kiali.istio-demo.timebertt.dev"
+    - "prometheus.istio-demo.timebertt.dev"
+    - "tracing.istio-demo.timebertt.dev"

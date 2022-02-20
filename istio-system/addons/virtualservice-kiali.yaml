@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: kiali
+spec:
+  hosts:
+  - "kiali.istio-demo.timebertt.dev"
+  gateways:
+  - addons-gateway
+  http:
+  - route:
+    - destination:
+        host: kiali
+        port:
+          number: 20001

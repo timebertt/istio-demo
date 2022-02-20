@@ -22,10 +22,11 @@ k apply -f shoot.yaml
    istioctl verify-install -f <(istioctl manifest generate --set profile=demo -f istio-profile.yaml)
    ```
 
-3. Install telemetry addons:
+3. Install telemetry addons, other system components and some global configuration:
 
    ```bash
-   k apply -k addons
+   k label ns istio-system istio-injection=enabled --overwrite
+   k apply -k istio-system
    ```
 
 4. Install the bookinfo app:
@@ -42,10 +43,10 @@ k apply -f shoot.yaml
    istioctl x uninstall --purge
    ```
 
-2. Uninstall telemetry addons:
+2. Uninstall telemetry addons and system components:
 
    ```bash
-   k delete -k addons
+   k delete -k istio-system
    ```
 
 3. Delete the `istio-system` namespace:
