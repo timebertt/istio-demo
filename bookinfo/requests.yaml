@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: requests-productpage
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: requests-productpage
+  template:
+    metadata:
+      labels:
+        app: requests-productpage
+    spec:
+      containers:
+      - name: requests
+        image: alpine
+        command:
+        - sh
+        - -c
+        - |
+          i=0
+          while true ; do
+            echo "request $((++i))"
+            wget -qO /dev/null "https://istio-demo.timebertt.dev/$URI"
+          done
+        env:
+        - name: URI
+          value: "productpage"
